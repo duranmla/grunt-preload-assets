@@ -8,10 +8,10 @@
 
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function ( grunt ) {
 
 	// Project configuration.
-	grunt.initConfig({
+	grunt.initConfig( {
 		jshint: {
 			all: [
 				'Gruntfile.js',
@@ -25,14 +25,14 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['tmp']
+			tests: [ 'tmp' ]
 		},
 
 		// Configuration to be run (and then tested).
 		preload_assets: {
 			default_options: {
 				files: {
-					'tmp/default_options.json': ['test/fixtures/*.png', 'test/fixtures/*.jpg']
+					'tmp/default_options.json': [ 'test/fixtures/*.png', 'test/fixtures/*.jpg' ]
 				}
 			},
 			preloadjs_options: {
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
 					template: 'preloadjs'
 				},
 				files: {
-					'tmp/preloadjs_options.js': ['test/fixtures/*.png', 'test/fixtures/*.jpg']
+					'tmp/preloadjs_options.js': [ 'test/fixtures/*.png', 'test/fixtures/*.jpg' ]
 				}
 			},
 			custom_options: {
@@ -49,7 +49,7 @@ module.exports = function (grunt) {
 					template: 'custom-sample'
 				},
 				files: {
-					'tmp/custom_options.js': ['test/fixtures/*.png', 'test/fixtures/*.jpg']
+					'tmp/custom_options.js': [ 'test/fixtures/*.png', 'test/fixtures/*.jpg' ]
 				}
 			},
 			json_full_options: {
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
 					detectDimensions: true
 				},
 				files: {
-					'tmp/json_full_options.json': ['test/fixtures/*.*']
+					'tmp/json_full_options.json': [ 'test/fixtures/*.*' ]
 				}
 			},
 			json_hash_options: {
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 					ignoreBasePath: 'test/'
 				},
 				files: {
-					'tmp/json_hash_options.json': ['test/fixtures/*.*']
+					'tmp/json_hash_options.json': [ 'test/fixtures/*.*' ]
 				}
 			},
 			csv_options: {
@@ -82,31 +82,48 @@ module.exports = function (grunt) {
 					template: 'csv'
 				},
 				files: {
-					'tmp/csv_options.csv': ['test/fixtures/*.*']
+					'tmp/csv_options.csv': [ 'test/fixtures/*.*' ]
+				}
+			},
+			/**
+			 * VINOGA - The configuration used for the vinoga project.
+			 */
+			vinoga: {
+				options: {
+					template: 'json',
+					key: 'manifest',
+					ignoreType: [ "mp3", "ogg" ],
+					minified: true,
+					srcBasePath: '/',
+					detectType: false,
+					detectId: false
+				},
+				files: {
+					'tmp/vinoga.json': [ 'test/fixtures/**' ]
 				}
 			}
 		},
 
 		// Unit tests.
 		nodeunit: {
-			tests: ['test/*_test.js']
+			tests: [ 'test/*_test.js' ]
 		}
 
-	});
+	} );
 
 	// Actually load this plugin's task(s).
-	grunt.loadTasks('tasks');
+	grunt.loadTasks( 'tasks' );
 
 	// These plugins provide necessary tasks.
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+	grunt.loadNpmTasks( 'grunt-contrib-clean' );
+	grunt.loadNpmTasks( 'grunt-contrib-nodeunit' );
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'preload_assets', 'nodeunit']);
+	grunt.registerTask( 'test', [ 'clean', 'preload_assets', 'nodeunit' ] );
 
 	// By default, lint and run all tests.
-	grunt.registerTask('default', ['jshint', 'test']);
+	grunt.registerTask( 'default', [ 'jshint', 'test' ] );
 
 };

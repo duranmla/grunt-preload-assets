@@ -1,6 +1,6 @@
 # grunt-preload-assets
 
-> A Grunt plugin for generating preload assets manifest files.	
+> A Grunt plugin for generating preload assets manifest files.
 > Supports [PreloadJS](http://www.createjs.com/#!/PreloadJS), [PxLoader](http://thinkpixellab.com/pxloader/), JSON, JS, CSV, and unlimited support for multiple formats by using [underscore templates](http://www.2ality.com/2012/06/underscore-templates.html).
 > By [@gunta](https://github.com/gunta/).
 
@@ -34,8 +34,8 @@ Task targets, files and options may be specified according to the grunt [Configu
 ### Options
 
 #### template
-Type: `String`	
-Choices: 	
+Type: `String`
+Choices:
 
 * `preloadjs`
 * `pxloader`
@@ -43,147 +43,159 @@ Choices:
 * `json-idaskey`
 * `csv`
 * `custom-sample`
-* Or a path to a template file.		
+* Or a path to a template file.
 
 Default: `json`
 
 Selects a template for generating the assets list.
-The output can be customized by creating your own [underscore template](http://www.2ality.com/2012/06/underscore-templates.html). 
+The output can be customized by creating your own [underscore template](http://www.2ality.com/2012/06/underscore-templates.html).
 
 
 ### Detecting options
 
 ####detectId
-Type: `Boolean`		
+Type: `Boolean`
 Default: `true`
 
-Includes an **identifier** in the output. 	
+Includes an **identifier** in the output.
 By default, it **camelizes the filename and removes the extension**.
-	
+
 ####detectSrc
-Type: `Boolean`		
+Type: `Boolean`
 Default: `true`
 
 Includes the file path.
-	
+
 ####detectType
-Type: `Boolean`		
+Type: `Boolean`
 Default: `true`
 
-Analyzes each asset file type and includes it. 	
+Analyzes each asset file type and includes it.
 By default, the supported file types are `IMAGE` `SOUND` `JSON` `XML` `CSS` `JAVASCRIPT` `SVG` and `TEXT`.
-	
-####detectBytes	
-Type: `Boolean`		
-Default: `false`	
 
-Includes each asset file size **in bytes**.		
-Useful when creating realistic progress bars.
-	
-####detectTotalBytes	
-Type: `Boolean`		
-Default: `false`	
+####detectBytes
+Type: `Boolean`
+Default: `false`
 
-Includes the sum of all assets file sizes **in bytes**. 	
+Includes each asset file size **in bytes**.
 Useful when creating realistic progress bars.
 
-####detectLastModified	
-Type: `Boolean`		
-Default: `false`	
+####detectTotalBytes
+Type: `Boolean`
+Default: `false`
 
-Includes each asset file last modified timestamp **in unixtime**. 	
+Includes the sum of all assets file sizes **in bytes**.
+Useful when creating realistic progress bars.
+
+####detectLastModified
+Type: `Boolean`
+Default: `false`
+
+Includes each asset file last modified timestamp **in unixtime**.
 Useful when comparing file changes or implementing a cache system.
 
-####detectMD5	
-Type: `Boolean`		
-Default: `false`	
+####detectMD5
+Type: `Boolean`
+Default: `false`
 
-Includes each asset file **md5 hash** trimmed to the first **8 chars**.		
-Useful when creating a cache system more reliable than one based on timestamps or checking integrity. 
+Includes each asset file **md5 hash** trimmed to the first **8 chars**.
+Useful when creating a cache system more reliable than one based on timestamps or checking integrity.
 
-####detectBase64	
-Type: `Boolean`		
-Default: `false`	
+####detectBase64
+Type: `Boolean`
+Default: `false`
 
-Includes each entire asset file encoded in a **base64 string**.		
+Includes each entire asset file encoded in a **base64 string**.
 Useful when the asset file sizes are small, to reduce http requests.
 
-####detectDimensions	
-Type: `Boolean`		
-Default: `false`	
+####detectDimensions
+Type: `Boolean`
+Default: `false`
 
-For `IMAGE` files: Includes each asset file `width` and `height` **in pixels**.		
+For `IMAGE` files: Includes each asset file `width` and `height` **in pixels**.
 Useful so one doesn't need to manually write the width/height everytime for each file.
 
 *Currently this only works on OS X (Waiting your pull request)* 😉
-	
+
 *Note that not every template needs to add support to all these properties.*
-	
+
 
 ### Advanced Options
 
 #### key
-Type: `String`	
+Type: `String`
 Default: `filesManifest`
 
 Specifies a key name for the root container.
 
 ####ignoreBasePath
-Type: `String`	
+Type: `String`
 Default: `undefined`
 
 Ignores a specific base path from the specified `src`.
 
+####srcBasePath
+Type: `String`
+Default: `""`
+
+Prepend a base path to the `src`.
+
+####minified
+Type: `Boolean`
+Default: `false`
+
+Minified the output. *Only work for `"json"` template for now.*
+
 #### processSrc
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the src filename.
 
 #### processId
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the id.
 
 #### processType
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the file type.
 
 #### processBytes
-Type: `Function`	
+Type: `Function`
 Parameter: `Number` bytes
 
 Overrides the function for processing the number of bytes.
 
 #### processTotalBytes
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the number of total bytes.
 
 #### processDimensions
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the dimensions of the file.
 
 #### processMD5
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the md5 hash for the file.
 
 #### processLastModified
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the last modified date.
 
 #### processBase64
-Type: `Function`	
+Type: `Function`
 Parameter: `String` filename
 
 Overrides the function for processing the base64 encode of the file.
