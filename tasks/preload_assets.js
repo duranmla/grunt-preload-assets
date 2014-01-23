@@ -147,6 +147,7 @@ module.exports = function ( grunt ) {
 			basePath: undefined,
 			ignoreBasePath: undefined,
 			ignoreType: [],
+			ignoreFiles: [],
 			srcBasePath: "",
 			minified: false,
 			detectSrc: true,
@@ -258,12 +259,14 @@ module.exports = function ( grunt ) {
 				fileProps.origSrc = filepath;
 				/**
 				 * VINOGA - Don't push the file if its not a file!
-				 * 			Ignore files with the given type.
+				 *			Ignore files with the given type or path.
 				 */
 				if ( grunt.file.isDir( filepath ) ) {
 					grunt.verbose.writeln( filepath + ' is a directory... not considered.' );
 				} else if ( options.ignoreType.indexOf( path.extname( filepath ).slice( 1 ) ) > -1 ) {
 					grunt.verbose.writeln( 'The ' + path.extname( filepath ) + ' file type is ignored.' );
+				} else if ( options.ignoreFiles.indexOf( _.strRightBack( filepath, options.basePath ) ) > -1 ) {
+					grunt.verbose.writeln( 'The ' + filepath + ' file is ignored.' );
 				} else {
 					grunt.verbose.writeln( 'Listing ' + filepath );
 					outputData.files.push( fileProps );

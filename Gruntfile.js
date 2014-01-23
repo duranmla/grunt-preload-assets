@@ -92,7 +92,9 @@ module.exports = function ( grunt ) {
 				options: {
 					template: 'json',
 					key: 'manifest',
-					ignoreType: [ "mp3", "ogg" ],
+					basePath: 'test/fixtures/',
+					ignoreType: [ 'mp3', 'ogg' ],
+					ignoreFiles: [ 'ignored.jpg' ],
 					minified: true,
 					srcBasePath: '/',
 					detectType: false,
